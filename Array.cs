@@ -3,7 +3,7 @@
 
 namespace C__Practice_modul_07_ua
 {
-   public class MyArray : IOutput, IMath, ISort
+   public class MyArray : IOutput, IMath, ISort, ICalc, IOutput2, ICalc2
     {
         private int[] elements;
 
@@ -86,6 +86,82 @@ namespace C__Practice_modul_07_ua
                 SortAsc();
             else
                 SortDesc();
+        }
+
+        public int Less(int valueToCompare)
+        {
+            int count = 0;
+            foreach (var element in elements)
+            {
+                if (element < valueToCompare)
+                    count++;
+            }
+            return count;
+        }
+
+        public int Greater(int valueToCompare)
+        {
+            int count = 0;
+            foreach (var element in elements)
+            {
+                if (element > valueToCompare)
+                    count++;
+            }
+            return count;
+        }
+
+        public void ShowEven()
+        {
+            Console.WriteLine("Even:");
+            foreach (var element in elements)
+            {
+                if (element % 2 == 0)
+                    Console.Write(element + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public void ShowOdd()
+        {
+            Console.WriteLine("Odd:");
+            foreach (var element in elements)
+            {
+                if (element % 2 != 0)
+                    Console.Write(element + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public int CountDistinct()
+        {
+            int distinctCount = 0;
+            for (int i = 0; i < elements.Length; i++)
+            {
+                bool isDistinct = true;
+                for (int j = 0; j < i; j++)
+                {
+                    if (elements[i] == elements[j])
+                    {
+                        isDistinct = false;
+                        break;
+                    }
+                }
+                if (isDistinct)
+                    distinctCount++;
+            }
+            return distinctCount;
+        }
+
+       
+        public int EqualToValue(int valueToCompare)
+        {
+            int equalCount = 0;
+            foreach (var element in elements)
+            {
+                if (element == valueToCompare)
+                    equalCount++;
+            }
+            return equalCount;
         }
     }
 
